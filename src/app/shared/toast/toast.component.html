@@ -1,0 +1,11 @@
+<div class="toasts">
+  <ng-container *ngFor="let notification of notifications">
+    <div
+      class="toast"
+      [ngClass]="notification.type"
+      [@toastAnimation]="display ? 'active' : 'inactive'"
+    >
+      {{ notification.message }}
+    </div>
+  </ng-container>
+</div>

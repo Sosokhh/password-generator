@@ -38,6 +38,7 @@ export class PasswordGeneratorComponent {
     ]
       .filter(item => Object.values(item)[0]);
     if (typesCount === 0) {
+      this.notificationService.showToast('error', 'Please select at least one option');
       return;
     }
 
@@ -48,16 +49,9 @@ export class PasswordGeneratorComponent {
       })
     }
     this.result = generatedPassword.slice(0, length);
+    this.notificationService.showToast('success', 'Password generated successfully');
   }
 
-  copyToClipboard() {
-    if (!this.result) {
-      return;
-    } else {
-      // this.clipboard.()
-      // navigator.clipboard.writeText(this.result).then(r => )
-    }
-  }
 
   getRandomLower() {
     return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
@@ -77,4 +71,8 @@ export class PasswordGeneratorComponent {
   }
 
 
+  eraseResult() {
+    this.result = '';
+    this.notificationService.showToast('success', 'Password erased')
+  }
 }
