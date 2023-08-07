@@ -14,11 +14,13 @@ export class CopyClipboardDirective {
   public onClick(event: MouseEvent): void {
 
     event.preventDefault();
-    if (!this.payload)
+    if (!this.payload) {
+      this.notificationService.showToast('error', 'Please generate password');
       return;
+    }
 
     navigator.clipboard.writeText(this.payload.toString()).then(() => {
-      this.notificationService.showToast('success', 'password copied!!');
+      this.notificationService.showToast('success', 'Password copied');
     });
   }
 
